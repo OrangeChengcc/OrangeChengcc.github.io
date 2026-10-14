@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Chenglintao 个人主页
 
-## Getting Started
+使用 Next.js、TypeScript 和 Tailwind CSS 构建的个人作品集。
 
-First, run the development server:
+- 网站：https://orangechengcc.github.io/
+- 仓库：https://github.com/OrangeChengcc/OrangeChengcc.github.io
+- 联系邮箱：chenglintao@whut.edu.cn
+
+## 本地开发
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开 http://localhost:8522。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 部署到 GitHub Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. 在仓库的 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。
+2. 打开 **Actions → Deploy to GitHub Pages → Run workflow**，选择 `main` 并运行。如果首次推送触发的任务因尚未启用 Pages 而失败，完成第 1 步后重新运行即可。
+3. 部署成功后访问 https://orangechengcc.github.io/。
 
-## Learn More
+之后每次推送到 `main` 都会自动构建并更新网站。只需提交源代码，构建生成的 `out/` 和 `.next/` 不需要提交。
 
-To learn more about Next.js, take a look at the following resources:
+更新网站时，在项目目录执行：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git add .
+git commit -m "Update portfolio"
+git push origin main
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+工作流会先运行 ESLint，再构建静态页面并部署。如果使用其他仓库名，例如 `my-portfolio`，网站地址会是 `https://orangechengcc.github.io/my-portfolio/`。工作流会读取 Pages 配置并自动设置资源路径，也支持在 Pages 设置中配置的自定义域名。
 
-## Deploy on Vercel
+## 本地检查静态导出
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+python3 -m http.server 8523 --directory out
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+打开 http://localhost:8523。正式部署的页面不会显示 Next.js 开发模式的“N”按钮。
+
+## 许可证
+
+本项目使用 MIT 许可证，详见 [LICENSE](LICENSE)。
